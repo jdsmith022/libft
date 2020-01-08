@@ -3,68 +3,69 @@
 #                                                         ::::::::             #
 #    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
-#    By: jesmith <jesmith@student.codam.nl>           +#+                      #
+#    By: jesmith <jesmith@studentodam.nl>           +#+                      #
 #                                                    +#+                       #
-#    Created: 2020/01/08 11:03:39 by jesmith        #+#    #+#                 #
-#    Updated: 2020/01/08 11:14:46 by jesmith       ########   odam.nl          #
+#    Created: 2019/01/13 12:32:27 by jesmith        #+#    #+#                 #
+#    Updated: 2019/09/06 12:44:57 by jesmith       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fractol
+NAME := libft.a
+CFLAGS := -Wall -Werror -Wextra
+HEAD := libft.h
+SRCS := lstmap lstdelone lstiter lstadd lstnew islower \
+		lstdel strsplit wrdcount strndup strnstr \
+		strstr itoa putnbr_fd putendl_fd isupper putstr_fd \
+		putchar_fd strtrim strjoin strsub intlen strncmp \
+		strnequ strequ strmapi strmap striteri striter \
+		strclr strdel strnew memdel memalloc memset \
+		bzero memcpy memccpy memmove memchr memcmp \
+		strlen strdup strcpy strncpy strcmp strcat \
+		strncat strlcat strchr strrchr isalpha isdigit \
+		isalnum isascii isprint toupper tolower isspace \
+		atoi putchar putstr putendl putnbr isupper \
+		islower stralloc strrev lstaddback del strdel \
+		strsubsize count_if free_strarray \
+		foreach range sqrt recursive_factorial \
+		div_mod swap is_negative print_alphabet \
+		print_numbers strclen ull_length atoi_base \
+		itoa_base exit isnumber_base has_prefix isdigit_base
 
-FLAGS = -Wall -Wextra -Werror -o
+CFILES := $(SRCS:%=./ft_%.c)
+SRCO := $(CFILES:%.c=%.o)
 
-DEBUGFLAGS = -g 
-
-MLX = minilibx_macos/
-
-MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
-
-LIBFT = libft/
-
-SRCS = ./srcs/
-
-SRCS_FILES = 
-
-CFILES = $(SRCS_FILES:=%$(SRCS)%.c)
-
-OFILES = $(CFILES:%.c=%.o)
-
-HEADERS = includes/fractol.h
-
-ADD_FILES = Makefile author
-
+NORM := norminette $(HEAD) $(CFILES) | grep -e "Warning" -e "Error" -B 1
 
 all: $(NAME)
 
-%.o: %.c
-	@gcc -c $(FLAGS) $@ $<
+norm:
+	@$(NORM)
 
-$(NAME) : $(OFILES)
-	@make re -C $(LIBFT)
-	@gcc -I $(MLX) -L $(MLX) $(MLXFLAGS) -I $(LIBFT) -L $(LIBFT) -lft \
-	$(CFILES) $(FLAGS) $(NAME)
-
-clean :
-	@make clean -C $(LIBFT)
-	@rm -f $(OFILES)
-	@rm -f *#
-	@rm -f *~
-	@rm -f *.DS_Store
-	@rm -Rf .vscode
-
-fclean :
-	@make fclean -C $(LIBFT)
-	@rm -f $(NAME)
-
-re : fclean all
-
-add : fclean
-	@git add $(MLX) $(LIBFT) $(CFILES) $(HEADERS) $(ADD_FILES)
+add:
+	@git add $(CFILES) $(HEAD) Makefile README.md
 	@git status
 
-push :
+push:
 ifdef MSG
-	@git commit -m
-	@git push -u origin
+	@git commit -m "$(MSG)"
+	@git push
+	@make norm
+else
+	@echo "WARNING NO MESSAGE"
 endif
+
+print:
+	@echo "$(SRCO)"
+
+$(NAME):
+	@gcc $(CFLAGS) -c $(CFILES)   
+	@ar rc	$(NAME) $(SRCO) $(HEAD)
+	@ranlib	$(NAME)
+
+clean:
+	@/bin/rm -f $(SRCO) *~
+
+fclean:
+	@/bin/rm -f $(SRCO) libft.a
+
+re: fclean all
