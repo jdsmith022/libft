@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/13 12:48:31 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/08 10:31:15 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/01/08 15:45:35 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ char				*ft_stralloc(const char *s);
 char				*ft_strrev(char *s);
 int					ft_strsubsize(char *str);
 void				ft_free_strarray(char **str);
+
+void				ft_bit_print(unsigned int number, size_t size);
 
 size_t				ft_wrdcount(char const *s, char c);
 

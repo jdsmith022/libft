@@ -3,10 +3,10 @@
 #                                                         ::::::::             #
 #    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
-#    By: jesmith <jesmith@studentodam.nl>           +#+                      #
+#    By: jesmith <jesmith@studentodam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/01/13 12:32:27 by jesmith        #+#    #+#                 #
-#    Updated: 2019/09/06 12:44:57 by jesmith       ########   odam.nl          #
+#    Updated: 2020/01/08 15:36:59 by jesmith       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCS := lstmap lstdelone lstiter lstadd lstnew islower \
 		foreach range sqrt recursive_factorial \
 		div_mod swap is_negative print_alphabet \
 		print_numbers strclen ull_length atoi_base \
-		itoa_base exit isnumber_base has_prefix isdigit_base
+		itoa_base exit isnumber_base has_prefix isdigit_base bit_print
 
 CFILES := $(SRCS:%=./ft_%.c)
 SRCO := $(CFILES:%.c=%.o)
