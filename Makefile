@@ -6,13 +6,18 @@
 #    By: jesmith <jesmith@studentodam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/01/13 12:32:27 by jesmith        #+#    #+#                 #
-#    Updated: 2020/01/08 15:36:59 by jesmith       ########   odam.nl          #
+#    Updated: 2020/02/02 10:15:42 by jessicasmit   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libft.a
+
 CFLAGS := -Wall -Werror -Wextra
-HEAD := libft.h
+
+HEAD := ./libft.h ./graphics.h
+
+SRCS_DIR := ./
+
 SRCS := lstmap lstdelone lstiter lstadd lstnew islower \
 		lstdel strsplit wrdcount strndup strnstr \
 		strstr itoa putnbr_fd putendl_fd isupper putstr_fd \
@@ -29,20 +34,39 @@ SRCS := lstmap lstdelone lstiter lstadd lstnew islower \
 		foreach range sqrt recursive_factorial \
 		div_mod swap is_negative print_alphabet \
 		print_numbers strclen ull_length atoi_base \
-		itoa_base exit isnumber_base has_prefix isdigit_base bit_print
+		itoa_base exit isnumber_base has_prefix isdigit_base bit_print \
 
-CFILES := $(SRCS:%=./ft_%.c)
+GRAGPHIC_SRCS := hsv_color rgb_color get_bit_value percentage
+
+CFILES := $(SRCS:%=$(SRCS_DIR)ft_%.c) $(GRAGPHIC_SRCS:%=$(SRCS_DIR)%.c)
+
 SRCO := $(CFILES:%.c=%.o)
 
 NORM := norminette $(HEAD) $(CFILES) | grep -e "Warning" -e "Error" -B 1
 
 all: $(NAME)
 
+%.o: %.c
+	@gcc -c $(FLAGS) $@ $<
+
+$(NAME): $(OFILES)
+	@gcc $(CFLAGS) -c $(CFILES)   
+	@ar rc	$(NAME) $(SRCO) $(HEAD)
+	@ranlib	$(NAME)
+
+clean:
+	@/bin/rm -f $(SRCO) *~
+
+fclean:
+	@/bin/rm -f $(SRCO) libft.a
+
+re: fclean all
+
 norm:
 	@$(NORM)
 
 add:
-	@git add $(CFILES) $(HEAD) Makefile README.md
+	@git add $(CFILES) $(HEAD) Makefile
 	@git status
 
 push:
@@ -56,16 +80,3 @@ endif
 
 print:
 	@echo "$(SRCO)"
-
-$(NAME):
-	@gcc $(CFLAGS) -c $(CFILES)   
-	@ar rc	$(NAME) $(SRCO) $(HEAD)
-	@ranlib	$(NAME)
-
-clean:
-	@/bin/rm -f $(SRCO) *~
-
-fclean:
-	@/bin/rm -f $(SRCO) libft.a
-
-re: fclean all

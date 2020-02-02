@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/13 12:48:31 by jesmith        #+#    #+#                */
-/*   Updated: 2020/01/08 15:45:35 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/02/02 10:14:44 by jessicasmit   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stddef.h>
 # include <unistd.h>
 # include <string.h>
+
+# include "graphics.h"
 
 void				ft_bzero(void *s, size_t n);
 void				*ft_memset(void *str, int c, size_t n);
