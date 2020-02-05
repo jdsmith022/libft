@@ -6,7 +6,7 @@
 #    By: jesmith <jesmith@studentodam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/01/13 12:32:27 by jesmith        #+#    #+#                 #
-#    Updated: 2020/02/02 10:15:42 by jessicasmit   ########   odam.nl          #
+#    Updated: 2020/02/05 16:34:06 by jesmith       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME := libft.a
 
 CFLAGS := -Wall -Werror -Wextra
 
-HEAD := ./libft.h ./graphics.h
+HEAD := ./libft.h ./graphics.h ./get_next_line.h
 
 SRCS_DIR := ./
 
@@ -38,7 +38,8 @@ SRCS := lstmap lstdelone lstiter lstadd lstnew islower \
 
 GRAGPHIC_SRCS := hsv_color rgb_color get_bit_value percentage
 
-CFILES := $(SRCS:%=$(SRCS_DIR)ft_%.c) $(GRAGPHIC_SRCS:%=$(SRCS_DIR)%.c)
+CFILES := $(SRCS:%=$(SRCS_DIR)ft_%.c) $(GRAGPHIC_SRCS:%=$(SRCS_DIR)%.c) \
+			get_next_line.c
 
 SRCO := $(CFILES:%.c=%.o)
 

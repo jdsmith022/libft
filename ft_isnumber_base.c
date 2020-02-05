@@ -6,13 +6,13 @@
 /*   By: jessicasmith <jessicasmith@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/13 21:02:41 by jessicasmit    #+#    #+#                */
-/*   Updated: 2020/01/08 10:19:47 by jesmith       ########   odam.nl         */
+/*   Updated: 2020/02/05 16:31:38 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int					ft_isnumber(char *str, int base)
+int					ft_isnumber_base(char *str, int base)
 {
 	size_t		index;
 	size_t		digits;

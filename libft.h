@@ -6,7 +6,7 @@
 /*   By: jesmith <jesmith@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/13 12:48:31 by jesmith        #+#    #+#                */
-/*   Updated: 2020/02/02 10:14:44 by jessicasmit   ########   odam.nl         */
+/*   Updated: 2020/02/05 16:33:33 by jesmith       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ void				ft_div_mod(int a, int b, int *div, int *mod);
 void				ft_swap(int *a, int *b);
 void				ft_print_numbers(void);
 void				ft_print_alphabet(void);
+
+int					get_next_line(const int fd, char **line);
 
 typedef struct		s_list
 {
